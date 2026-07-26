@@ -1,0 +1,20 @@
+
+# Flutter generated
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+
+# Flutter build
+build/
+**/build/
+
+# Android build
+android/.gradle/
+android/app/build/
+*.apk
+*.aab
+
+# Hermes agent
+hermes-agent/
