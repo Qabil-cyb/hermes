@@ -6,6 +6,8 @@ import 'package:spider_panel/providers/auth_provider.dart';
 import 'package:spider_panel/screens/widgets/glass_card.dart';
 import 'package:spider_panel/screens/widgets/neon_button.dart';
 import 'package:spider_panel/screens/widgets/glass_input.dart';
+import 'package:spider_panel/services/api_service.dart';
+import 'package:spider_panel/providers/theme_provider.dart';
 
 class ProxyScreen extends ConsumerStatefulWidget {
   const ProxyScreen({super.key});
@@ -71,7 +73,7 @@ class _ProxyScreenState extends ConsumerState<ProxyScreen> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
             side: BorderSide(
-              color: AppTheme.neonColors[NeonTheme.blue]['border']!,
+              color: AppTheme.neonColors[NeonTheme.blue]!['border']!,
               width: 1,
             ),
           ),
@@ -189,7 +191,7 @@ class _ProxyScreenState extends ConsumerState<ProxyScreen> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
           side: BorderSide(
-            color: AppTheme.neonColors[NeonTheme.blue]['border']!,
+            color: AppTheme.neonColors[NeonTheme.blue]!['border']!,
             width: 1,
           ),
         ),
@@ -254,7 +256,7 @@ class _ProxyScreenState extends ConsumerState<ProxyScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final customTheme = ref.watch(customThemeProvider);
-    final neonColor = AppTheme.neonColors[customTheme]['primary']!;
+    final neonColor = AppTheme.neonColors[customTheme]!['primary']!;
 
     return Container(
       decoration: BoxDecoration(

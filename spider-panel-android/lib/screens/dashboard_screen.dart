@@ -2,23 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spider_panel/providers/dashboard_provider.dart';
-import 'package:spider_panel/widgets/stat_card.dart';
+import 'package:spider_panel/screens/widgets/stat_card.dart';
 import 'package:spider_panel/theme/app_theme.dart';
 
 class DashboardScreen extends ConsumerWidget {
   const DashboardScreen({super.key});
+
+  static bool _fetchedOnce = false;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final dashboardState = ref.watch(dashboardProvider);
     final dashboardNotifier = ref.read(dashboardProvider.notifier);
     final theme = Theme.of(context);
-    final neon = Theme.of(context).brightness == Brightness.dark 
-        ? NeonTheme.blue 
+    final neon = Theme.of(context).brightness == Brightness.dark
+        ? NeonTheme.blue
         : NeonTheme.red;
-    
-    // Fetch dashboard data
-    ref.once(dashboardNotifier.fetchDashboard);
+
+    // Fetch dashboard data once when the screen is first built
+    if (!_fetchedOnce) {
+      _fetchedOnce = true;
+      Future.microtask(() => dashboardNotifier.fetchDashboard());
+    }
     
     return Scaffold(
       appBar: AppBar(
@@ -51,7 +56,7 @@ class DashboardScreen extends ConsumerWidget {
                       StatCard(
                         label: 'CPU',
                         value: '${dashboardState.stats!.cpuPercent.toStringAsFixed(1)}%',
-                        icon: Icons.cpu,
+                        icon: Icons.memory,
                         iconColor: Colors.orange,
                         progress: dashboardState.stats!.cpuPercent / 100,
                         subtitle: 'Threads: ${dashboardState.stats!.cpuCount}',
@@ -160,7 +165,7 @@ class DashboardScreen extends ConsumerWidget {
                         StatCard(
                           label: 'Docker Containers',
                           value: dashboardState.stats!.dockerContainers.toString(),
-                          icon: Icons.containerized_workspaces,
+                          icon: Icons.inventory_2,
                           iconColor: Colors.blueGrey,
                           neon: neon,
                         ),

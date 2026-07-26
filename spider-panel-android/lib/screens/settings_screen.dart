@@ -7,6 +7,8 @@ import 'package:spider_panel/providers/auth_provider.dart';
 import 'package:spider_panel/screens/widgets/glass_card.dart';
 import 'package:spider_panel/screens/widgets/neon_button.dart';
 import 'package:spider_panel/screens/widgets/glass_input.dart';
+import 'package:spider_panel/services/api_service.dart';
+import 'package:spider_panel/services/storage_service.dart';
 
 class SettingsScreen extends ConsumerStatefulWidget {
   const SettingsScreen({super.key});
@@ -34,7 +36,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final customTheme = ref.watch(customThemeProvider);
-    final neonColor = AppTheme.neonColors[customTheme]['primary']!;
+    final neonColor = AppTheme.neonColors[customTheme]!['primary']!;
     final authState = ref.watch(authStateProvider);
 
     return Container(
@@ -299,7 +301,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20),
                             side: BorderSide(
-                              color: AppTheme.neonColors[NeonTheme.red]['border']!,
+                              color: AppTheme.neonColors[NeonTheme.red]!['border']!,
                               width: 1,
                             ),
                           ),
@@ -318,7 +320,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                               child: Text(
                                 'Reset',
                                 style: TextStyle(
-                                  color: AppTheme.neonColors[NeonTheme.red]['primary'],
+                                  color: AppTheme.neonColors[NeonTheme.red]!['primary']!,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -386,7 +388,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   Widget _buildThemeRadio(NeonTheme theme, String label, IconData icon) {
     final customTheme = ref.watch(customThemeProvider);
     final isSelected = customTheme == theme;
-    final neonColor = AppTheme.neonColors[theme]['primary']!;
+    final neonColor = AppTheme.neonColors[theme]!['primary']!;
 
     return InkWell(
       onTap: () {

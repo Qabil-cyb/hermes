@@ -8,6 +8,8 @@ import 'package:spider_panel/providers/auth_provider.dart';
 import 'package:spider_panel/screens/widgets/glass_card.dart';
 import 'package:spider_panel/screens/widgets/neon_button.dart';
 import 'package:spider_panel/screens/widgets/glass_input.dart';
+import 'package:spider_panel/services/api_service.dart';
+import 'package:spider_panel/providers/theme_provider.dart';
 
 class AIScreen extends ConsumerStatefulWidget {
   const AIScreen({super.key});
@@ -24,6 +26,10 @@ class _AIScreenState extends ConsumerState<AIScreen> {
   final _messageController = TextEditingController();
   String? _conversationId;
 
+
+  ThemeData get theme => Theme.of(context);
+  Color get neonColor => AppTheme.neonColors[ref.watch(customThemeProvider)]!['primary']!;
+  NeonTheme get customTheme => ref.watch(customThemeProvider);
   @override
   void initState() {
     super.initState();
@@ -119,9 +125,7 @@ class _AIScreenState extends ConsumerState<AIScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     final customTheme = ref.watch(customThemeProvider);
-    final neonColor = AppTheme.neonColors[customTheme]['primary']!;
 
     return Container(
       decoration: BoxDecoration(
@@ -172,7 +176,7 @@ class _AIScreenState extends ConsumerState<AIScreen> {
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: AppTheme.neonColors[customTheme]['glow']!.withOpacity(0.5),
+                    color: AppTheme.neonColors[customTheme]!['glow']!.withOpacity(0.5),
                     blurRadius: 40,
                     spreadRadius: 10,
                   ),
@@ -349,7 +353,6 @@ class _AIScreenState extends ConsumerState<AIScreen> {
                     onSuffixPressed: _sendMessage,
                     suffixIcon: Icons.send,
                     maxLines: 3,
-                    minLines: 1,
                   ),
                 ),
                 const SizedBox(width: 12),

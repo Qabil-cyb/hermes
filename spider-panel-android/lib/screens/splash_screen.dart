@@ -43,13 +43,7 @@ class SplashScreen extends ConsumerWidget {
                 Icons.spa,
                 size: 60,
                 color: Colors.white,
-              ).animate(
-                onBegin: (style) => style.copyWith(opacity: 0, scale: 0.5),
-                onEnd: (style) => style.copyWith(opacity: 1, scale: 1),
-              ).animateInterval(
-                const Duration(milliseconds: 500),
-                reverseDuration: const Duration(milliseconds: 300),
-              ).fadeIn().scale(),
+              ).animate().fadeIn(duration: 500.ms, curve: Curves.easeOut).scale(begin: const Offset(0.5, 0.5), end: const Offset(1, 1), duration: 500.ms),
             ),
             const SizedBox(height: 32),
             // App Title
@@ -67,10 +61,7 @@ class SplashScreen extends ConsumerWidget {
                   ),
                 ],
               ),
-            ).animate(
-              onBegin: (style) => style.copyWith(opacity: 0, y: -20),
-              onEnd: (style) => style.copyWith(opacity: 1, y: 0),
-            ).animateInterval(const Duration(milliseconds: 500)),
+            ).animate().fadeIn(duration: 500.ms, curve: Curves.easeOut).moveY(begin: -20, end: 0, duration: 500.ms),
             const SizedBox(height: 48),
             // Loading indicator with neon glow
             Container(
@@ -92,10 +83,7 @@ class SplashScreen extends ConsumerWidget {
                   ),
                 ],
               ),
-            ).animate(
-              onBegin: (style) => style.copyWith(width: 0),
-              onEnd: (style) => style.copyWith(width: 200),
-            ).animateInterval(const Duration(milliseconds: 800)),
+            ).animate().fadeIn(duration: 800.ms, curve: Curves.easeOut),
             const SizedBox(height: 80),
             // "Made By Amir" with animated opacity
             Text(
@@ -104,10 +92,7 @@ class SplashScreen extends ConsumerWidget {
                 color: Colors.white.withOpacity(0.7),
                 letterSpacing: 1,
               ),
-            ).animate(
-              onBegin: (style) => style.copyWith(opacity: 0),
-              onEnd: (style) => style.copyWith(opacity: 1),
-            ).animateInterval(const Duration(milliseconds: 1200)),
+            ).animate().fadeIn(duration: 1200.ms, delay: 400.ms, curve: Curves.easeIn),
           ],
         ),
       ),

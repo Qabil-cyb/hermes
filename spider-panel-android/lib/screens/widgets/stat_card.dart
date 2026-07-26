@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:spider_panel/theme/app_theme.dart';
 
 class StatCard extends StatelessWidget {
   final String label;
   final String value;
   final double? percentage;
   final IconData icon;
-  final Color color;
+  final Color iconColor;
+  final String? subtitle;
+  final NeonTheme? neon;
   final Animation<double>? animation;
+  final double? progress;
 
   const StatCard({
     super.key,
@@ -15,21 +19,26 @@ class StatCard extends StatelessWidget {
     required this.value,
     this.percentage,
     required this.icon,
-    required this.color,
+    this.iconColor = Colors.white,
+    this.subtitle,
+    this.neon,
     this.animation,
+    this.progress,
   });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    
+    final pct = percentage ?? progress;
+    final accent = iconColor;
+
     Widget card = Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
+        color: accent.withOpacity(0.1),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: color.withOpacity(0.3),
+          color: accent.withOpacity(0.3),
           width: 1,
         ),
       ),
@@ -39,12 +48,12 @@ class StatCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Icon(icon, color: color, size: 32),
-              if (percentage != null)
+              Icon(icon, color: accent, size: 32),
+              if (pct != null)
                 Text(
-                  '${(percentage * 100).toInt()}%',
+                  '${(pct! * 100).toInt()}%',
                   style: theme.textTheme.bodySmall?.copyWith(
-                    color: color,
+                    color: accent,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -65,12 +74,22 @@ class StatCard extends StatelessWidget {
               color: Colors.white70,
             ),
           ),
-          if (percentage != null) ...[
+          if (subtitle != null) ...[
+            const SizedBox(height: 4),
+            Text(
+              subtitle!,
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: Colors.white54,
+                fontSize: 11,
+              ),
+            ),
+          ],
+          if (pct != null) ...[
             const SizedBox(height: 8),
             LinearProgressIndicator(
-              value: percentage,
+              value: pct,
               backgroundColor: Colors.white.withOpacity(0.1),
-              valueColor: AlwaysStoppedAnimation<Color>(color),
+              valueColor: AlwaysStoppedAnimation<Color>(accent),
               borderRadius: BorderRadius.circular(4),
               minHeight: 4,
             ),

@@ -3,7 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:spider_panel/theme/app_theme.dart';
 import 'package:spider_panel/providers/auth_provider.dart';
+import 'package:spider_panel/providers/theme_provider.dart';
 import 'package:spider_panel/screens/widgets/glass_card.dart';
+import 'package:spider_panel/screens/widgets/neon_button.dart';
 
 class ProfileScreen extends ConsumerWidget {
   const ProfileScreen({super.key});
@@ -13,7 +15,7 @@ class ProfileScreen extends ConsumerWidget {
     final theme = Theme.of(context);
     final authState = ref.watch(authStateProvider);
     final customTheme = ref.watch(customThemeProvider);
-    final neonColor = AppTheme.neonColors[customTheme]['primary']!;
+    final neonColor = AppTheme.neonColors[customTheme]!['primary']!;
 
     return Container(
       decoration: BoxDecoration(
@@ -267,7 +269,7 @@ class ProfileScreen extends ConsumerWidget {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20),
                             side: BorderSide(
-                              color: AppTheme.neonColors[NeonTheme.red]['border']!,
+                              color: AppTheme.neonColors[NeonTheme.red]!['border']!,
                               width: 1,
                             ),
                           ),
@@ -286,7 +288,7 @@ class ProfileScreen extends ConsumerWidget {
                               child: Text(
                                 'Logout',
                                 style: TextStyle(
-                                  color: AppTheme.neonColors[NeonTheme.red]['primary'],
+                                  color: AppTheme.neonColors[NeonTheme.red]!['primary']!,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),

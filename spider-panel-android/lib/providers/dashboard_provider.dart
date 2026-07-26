@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spider_panel/services/api_service.dart';
+import 'package:spider_panel/providers/auth_provider.dart';
 import 'package:spider_panel/services/storage_service.dart';
 import 'package:spider_panel/models/dashboard_model.dart';
 

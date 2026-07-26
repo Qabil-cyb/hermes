@@ -79,7 +79,7 @@ class _InboundsScreenState extends ConsumerState<InboundsScreen> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
             side: BorderSide(
-              color: AppTheme.neonColors[NeonTheme.blue]['border']!,
+              color: AppTheme.neonColors[NeonTheme.blue]!['border']!,
               width: 1,
             ),
           ),
@@ -251,7 +251,7 @@ class _InboundsScreenState extends ConsumerState<InboundsScreen> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
               side: BorderSide(
-                color: AppTheme.neonColors[NeonTheme.blue]['border']!,
+                color: AppTheme.neonColors[NeonTheme.blue]!['border']!,
                 width: 1,
               ),
             ),
@@ -404,7 +404,7 @@ class _InboundsScreenState extends ConsumerState<InboundsScreen> {
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(20),
                                         side: BorderSide(
-                                          color: AppTheme.neonColors[NeonTheme.red]['border']!,
+                                          color: AppTheme.neonColors[NeonTheme.red]!['border']!,
                                           width: 1,
                                         ),
                                       ),
@@ -423,7 +423,7 @@ class _InboundsScreenState extends ConsumerState<InboundsScreen> {
                                           child: Text(
                                             'Delete',
                                             style: TextStyle(
-                                              color: AppTheme.neonColors[NeonTheme.red]['primary'],
+                                              color: AppTheme.neonColors[NeonTheme.red]!['primary']!,
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),

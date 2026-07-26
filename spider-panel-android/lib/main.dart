@@ -3,12 +3,25 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:spider_panel/theme/app_theme.dart';
 import 'package:spider_panel/screens/splash_screen.dart';
+import 'package:spider_panel/screens/login_screen.dart';
+import 'package:spider_panel/screens/dashboard_screen.dart';
+import 'package:spider_panel/screens/users_screen.dart';
+import 'package:spider_panel/screens/inbounds_screen.dart';
+import 'package:spider_panel/screens/ai_screen.dart';
+import 'package:spider_panel/screens/news_screen.dart';
+import 'package:spider_panel/screens/proxy_screen.dart';
+import 'package:spider_panel/screens/settings_screen.dart';
+import 'package:spider_panel/screens/profile_screen.dart';
 import 'package:spider_panel/services/api_service.dart';
 import 'package:spider_panel/services/storage_service.dart';
 import 'package:spider_panel/providers/auth_provider.dart';
 import 'package:spider_panel/providers/theme_provider.dart';
 import 'package:spider_panel/models/user_model.dart';
 import 'package:spider_panel/models/inbound_model.dart';
+import 'package:spider_panel/models/dashboard_model.dart';
+import 'package:spider_panel/models/proxy_model.dart';
+import 'package:spider_panel/models/news_model.dart';
+import 'package:spider_panel/models/api_key_model.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -53,15 +66,15 @@ class SpiderPanelApp extends ConsumerWidget {
       themeMode: themeMode,
       home: const SplashScreen(),
       routes: {
-        '/login': (context) => const LoginScreen(),
-        '/dashboard': (context) => const DashboardScreen(),
-        '/users': (context) => const UsersScreen(),
-        '/inbounds': (context) => const InboundsScreen(),
-        '/ai': (context) => const AIScreen(),
-        '/news': (context) => const NewsScreen(),
-        '/proxy': (context) => const ProxyScreen(),
-        '/settings': (context) => const SettingsScreen(),
-        '/profile': (context) => const ProfileScreen(),
+        '/login': (context) => LoginScreen(),
+        '/dashboard': (context) => DashboardScreen(),
+        '/users': (context) => UsersScreen(),
+        '/inbounds': (context) => InboundsScreen(),
+        '/ai': (context) => AIScreen(),
+        '/news': (context) => NewsScreen(),
+        '/proxy': (context) => ProxyScreen(),
+        '/settings': (context) => SettingsScreen(),
+        '/profile': (context) => ProfileScreen(),
       },
     );
   }

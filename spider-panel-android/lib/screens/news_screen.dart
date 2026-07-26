@@ -4,6 +4,8 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:spider_panel/theme/app_theme.dart';
 import 'package:spider_panel/providers/auth_provider.dart';
 import 'package:spider_panel/screens/widgets/glass_card.dart';
+import 'package:spider_panel/services/api_service.dart';
+import 'package:spider_panel/providers/theme_provider.dart';
 
 class NewsScreen extends ConsumerStatefulWidget {
   const NewsScreen({super.key});
@@ -58,7 +60,7 @@ class _NewsScreenState extends ConsumerState<NewsScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final customTheme = ref.watch(customThemeProvider);
-    final neonColor = AppTheme.neonColors[customTheme]['primary']!;
+    final neonColor = AppTheme.neonColors[customTheme]!['primary']!;
 
     return Container(
       decoration: BoxDecoration(
@@ -152,8 +154,7 @@ class _NewsScreenState extends ConsumerState<NewsScreen> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    if (newsItem['imageUrl'] != null &&
-                                        (newsItem['imageUrl'] as String).isNotEmpty)
+                                    if ((newsItem['imageUrl'] as String? ?? '').isNotEmpty)
                                       ClipRRect(
                                         borderRadius: BorderRadius.circular(12),
                                         child: Image.network(
@@ -183,8 +184,7 @@ class _NewsScreenState extends ConsumerState<NewsScreen> {
                                           },
                                         ),
                                       ),
-                                    if (newsItem['imageUrl'] != null &&
-                                        (newsItem['imageUrl'] as String).isNotEmpty)
+                                    if ((newsItem['imageUrl'] as String? ?? '').isNotEmpty)
                                       const SizedBox(height: 12),
                                     Text(
                                       newsItem['title'] ?? 'Untitled',
@@ -194,7 +194,7 @@ class _NewsScreenState extends ConsumerState<NewsScreen> {
                                       ),
                                     ),
                                     const SizedBox(height: 8),
-                                    if ((newsItem['description'] as String?).isNotEmpty)
+                                    if ((newsItem['description'] as String?)?.isNotEmpty ?? false)
                                       Text(
                                         newsItem['description'],
                                         style: theme.textTheme.bodyMedium?.copyWith(
@@ -207,8 +207,7 @@ class _NewsScreenState extends ConsumerState<NewsScreen> {
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
-                                        if (newsItem['publishedAt'] != null &&
-                                            (newsItem['publishedAt'] as String).isNotEmpty)
+                                        if ((newsItem['publishedAt'] as String? ?? '').isNotEmpty)
                                           Row(
                                             children: [
                                               Icon(Icons.access_time, size: 14, color: Colors.white38),

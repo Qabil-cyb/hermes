@@ -159,11 +159,11 @@ class Sidebar extends StatelessWidget {
   }
 
   Widget _buildNavItem({
-    required IconData icon;
-    required String label;
-    required int index;
-    required int selectedIndex;
-    required Function(int) onTap;
+    required IconData icon,
+    required String label,
+    required int index,
+    required int selectedIndex,
+    required Function(int) onTap,
   }) {
     final isSelected = selectedIndex == index;
     

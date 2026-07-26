@@ -13,6 +13,7 @@ class GlassCard extends ConsumerWidget {
   final double borderWidth;
   final double borderRadius;
   final bool isDark;
+  final NeonTheme? neon;
   final VoidCallback? onTap;
 
   const GlassCard({
@@ -26,6 +27,7 @@ class GlassCard extends ConsumerWidget {
     this.borderWidth = 1,
     this.borderRadius = AppTheme.glassBorderRadius,
     this.isDark = true,
+    this.neon,
     this.onTap,
   });
 

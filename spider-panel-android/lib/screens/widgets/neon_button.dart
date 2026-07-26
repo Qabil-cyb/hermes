@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:spider_panel/theme/app_theme.dart';
+import 'package:spider_panel/providers/theme_provider.dart';
 
 class NeonButton extends ConsumerStatefulWidget {
   final String label;
@@ -10,7 +11,10 @@ class NeonButton extends ConsumerStatefulWidget {
   final Color? color;
   final bool isLoading;
   final bool isExpanded;
+  final NeonTheme? neon;
   final double borderRadius;
+  final double? width;
+  final bool isOutlined;
   final EdgeInsetsGeometry? padding;
 
   const NeonButton({
@@ -22,7 +26,10 @@ class NeonButton extends ConsumerStatefulWidget {
     this.isLoading = false,
     this.isExpanded = false,
     this.borderRadius = 16,
+    this.width,
+    this.isOutlined = false,
     this.padding,
+    this.neon,
   });
 
   @override

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-
+import 'package:spider_panel/theme/app_theme.dart';
 enum NeonTheme { red, blue, green }
 
 class AppTheme {
@@ -41,7 +40,7 @@ class AppTheme {
         surfaceVariant: colors['card']!,
         outline: colors['border']!,
       ),
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: Colors.white.withOpacity(0.9),
         elevation: 0,
         shape: RoundedRectangleBorder(
@@ -54,12 +53,12 @@ class AppTheme {
         backgroundColor: Colors.transparent,
         elevation: 0,
         surfaceTintColor: Colors.transparent,
-        titleTextStyle: GoogleFonts.vazirmatn(
+        titleTextStyle: const TextStyle(
           fontSize: 20, fontWeight: FontWeight.w600, color: Colors.black87,
         ),
         iconTheme: const IconThemeData(color: Colors.black87),
       ),
-      textTheme: GoogleFonts.vazirmatnTextTheme(base.textTheme),
+      textTheme: base.textTheme,
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           backgroundColor: colors['primary'],
@@ -107,7 +106,7 @@ class AppTheme {
         onSurface: Colors.white,
       ),
       scaffoldBackgroundColor: const Color(0xFF0F0F1A),
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: const Color(0x1AFFFFFF),
         elevation: 0,
         shape: RoundedRectangleBorder(
@@ -120,12 +119,12 @@ class AppTheme {
         backgroundColor: Colors.transparent,
         elevation: 0,
         surfaceTintColor: Colors.transparent,
-        titleTextStyle: GoogleFonts.vazirmatn(
+        titleTextStyle: const TextStyle(
           fontSize: 20, fontWeight: FontWeight.w600, color: Colors.white,
         ),
         iconTheme: const IconThemeData(color: Colors.white),
       ),
-      textTheme: GoogleFonts.vazirmatnTextTheme(base.textTheme).apply(
+      textTheme: base.textTheme.apply(
         bodyColor: Colors.white,
         displayColor: Colors.white,
       ),
@@ -175,7 +174,7 @@ class AppTheme {
     required NeonTheme neon,
     bool isDark = true,
     double borderWidth = 1,
-  = 1,
+    double borderRadius = 1,
   }) {
     final colors = neonColors[neon]!;
     return BoxDecoration(

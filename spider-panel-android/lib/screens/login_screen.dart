@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spider_panel/providers/auth_provider.dart';
-import 'package:spider_panel/widgets/glass_card.dart';
-import 'package:spider_panel/widgets/glass_input.dart';
-import 'package:spider_panel/widgets/neon_button.dart';
+import 'package:spider_panel/services/storage_service.dart';
+import 'package:spider_panel/theme/app_theme.dart';
+import 'package:spider_panel/screens/widgets/glass_card.dart';
+import 'package:spider_panel/screens/widgets/glass_input.dart';
+import 'package:spider_panel/screens/widgets/neon_button.dart';
 
 class LoginScreen extends ConsumerWidget {
   const LoginScreen({super.key});
@@ -60,7 +62,7 @@ class LoginScreen extends ConsumerWidget {
                   label: 'API KEY',
                   hint: 'Enter your API key here...',
                   controller: TextEditingController(), // TODO: Connect to provider
-                  prefixIcon: const Icon(Icons.key),
+                  prefixIcon: Icons.key,
                   neon: neon,
                 ),
                 const SizedBox(height: 16),
@@ -70,7 +72,7 @@ class LoginScreen extends ConsumerWidget {
                   label: 'Device ID (Optional)',
                   hint: 'Leave empty to auto-generate...',
                   controller: TextEditingController(), // TODO: Connect to provider
-                  prefixIcon: const Icon(Icons.computer),
+                  prefixIcon: Icons.computer,
                   neon: neon,
                 ),
                 const SizedBox(height: 16),
@@ -118,11 +120,16 @@ class LoginScreen extends ConsumerWidget {
                   width: double.infinity,
                   onPressed: authState.isLoading
                       ? null
-                      : () => authNotifier.login(
-                          context.read<StorageService>().getBaseUrl() ?? '',
-                          context.read<StorageService>().getApiKey() ?? '',
-                          'device-id', // TODO: Get real device ID
-                        ),
+                      : () async {
+                          final storage = ref.read(storageServiceProvider);
+                          final baseUrl = await storage.getBaseUrl() ?? '';
+                          final apiKey = await storage.getApiKey() ?? '';
+                          authNotifier.login(
+                            baseUrl,
+                            apiKey,
+                            'device-id', // TODO: Get real device ID
+                          );
+                        },
                 ),
                 const SizedBox(height: 24),
                 
@@ -139,13 +146,7 @@ class LoginScreen extends ConsumerWidget {
                 ),
               ],
             ),
-          ).animate(
-            onBegin: (style) => style.copyWith(opacity: 0, scale: 0.9),
-            onEnd: (style) => style.copyWith(opacity: 1, scale: 1),
-          ).animateInterval(
-            const Duration(milliseconds: 300),
-            reverseDuration: const Duration(milliseconds: 200),
-          ).fadeIn().scale(),
+          ).animate().fadeIn(duration: 300.ms, curve: Curves.easeOut).scale(begin: const Offset(0.9, 0.9), end: const Offset(1, 1), duration: 300.ms),
         ),
       ),
     );

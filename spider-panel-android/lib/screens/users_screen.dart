@@ -78,7 +78,7 @@ class _UsersScreenState extends ConsumerState<UsersScreen> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
             side: BorderSide(
-              color: AppTheme.neonColors[NeonTheme.blue]['border']!,
+              color: AppTheme.neonColors[NeonTheme.blue]!['border']!,
               width: 1,
             ),
           ),
@@ -239,7 +239,7 @@ class _UsersScreenState extends ConsumerState<UsersScreen> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
           side: BorderSide(
-            color: AppTheme.neonColors[NeonTheme.red]['border']!,
+            color: AppTheme.neonColors[NeonTheme.red]!['border']!,
             width: 1,
           ),
         ),
@@ -283,7 +283,7 @@ class _UsersScreenState extends ConsumerState<UsersScreen> {
             child: Text(
               'Delete',
               style: TextStyle(
-                color: AppTheme.neonColors[NeonTheme.red]['primary'],
+                color: AppTheme.neonColors[NeonTheme.red]!['primary']!,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -339,9 +339,6 @@ class _UsersScreenState extends ConsumerState<UsersScreen> {
                   onSuffixPressed: () {
                     setState(() => _searchQuery = '');
                     _loadUsers();
-                  },
-                  onChanged: (value) {
-                    setState(() => _searchQuery = value ?? '');
                   },
                 ),
               ),

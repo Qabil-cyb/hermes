@@ -17,6 +17,7 @@ class GlassInput extends StatefulWidget {
   final int? maxLength;
   final bool enabled;
   final bool readOnly;
+  final NeonTheme? neon;
 
   const GlassInput({
     super.key,
@@ -34,6 +35,7 @@ class GlassInput extends StatefulWidget {
     this.maxLength,
     this.enabled = true,
     this.readOnly = false,
+    this.neon,
   });
 
   @override
@@ -54,25 +56,25 @@ class _GlassInputState extends State<GlassInput> {
         border: Border(
           top: BorderSide(
             color: _isFocused
-                ? AppTheme.neonColors[NeonTheme.blue]['primary']!
+                ? AppTheme.neonColors[NeonTheme.blue]!['primary']!
                 : Colors.white.withOpacity(0.2),
             width: 1.5,
           ),
           left: BorderSide(
             color: _isFocused
-                ? AppTheme.neonColors[NeonTheme.blue]['primary']!
+                ? AppTheme.neonColors[NeonTheme.blue]!['primary']!
                 : Colors.white.withOpacity(0.2),
             width: 1.5,
           ),
           right: BorderSide(
             color: _isFocused
-                ? AppTheme.neonColors[NeonTheme.blue]['primary']!
+                ? AppTheme.neonColors[NeonTheme.blue]!['primary']!
                 : Colors.white.withOpacity(0.1),
             width: 1,
           ),
           bottom: BorderSide(
             color: _isFocused
-                ? AppTheme.neonColors[NeonTheme.blue]['primary']!
+                ? AppTheme.neonColors[NeonTheme.blue]!['primary']!
                 : Colors.white.withOpacity(0.05),
             width: 0.5,
           ),
@@ -82,8 +84,8 @@ class _GlassInputState extends State<GlassInput> {
           end: Alignment.bottomRight,
           colors: _isFocused
               ? [
-                  AppTheme.neonColors[NeonTheme.blue]['card']!.withOpacity(0.4),
-                  AppTheme.neonColors[NeonTheme.blue]['card']!.withOpacity(0.15),
+                  AppTheme.neonColors[NeonTheme.blue]!['card']!.withOpacity(0.4),
+                  AppTheme.neonColors[NeonTheme.blue]!['card']!.withOpacity(0.15),
                 ]
               : [
                   Colors.white.withOpacity(0.1),
@@ -93,7 +95,7 @@ class _GlassInputState extends State<GlassInput> {
         boxShadow: _isFocused
             ? [
                 BoxShadow(
-                  color: AppTheme.neonColors[NeonTheme.blue]['glow']!.withOpacity(0.3),
+                  color: AppTheme.neonColors[NeonTheme.blue]!['glow']!.withOpacity(0.3),
                   blurRadius: 15,
                   spreadRadius: 1,
                 ),
@@ -148,4 +150,43 @@ class _GlassInputState extends State<GlassInput> {
       .fadeIn(duration: 300.ms)
       .slideY(begin: 0.2, end: 0);
   }
+}
+
+class GlassPasswordInput extends StatelessWidget {
+  final TextEditingController? controller;
+  final String? label;
+  final String? hint;
+  final IconData? prefixIcon;
+  final VoidCallback? onSuffixPressed;
+  final IconData? suffixIcon;
+  final bool enabled;
+  final bool readOnly;
+  final NeonTheme? neon;
+
+  const GlassPasswordInput({
+    super.key,
+    this.controller,
+    this.label,
+    this.hint,
+    this.prefixIcon,
+    this.suffixIcon,
+    this.onSuffixPressed,
+    this.enabled = true,
+    this.readOnly = false,
+    this.neon,
+  });
+
+  @override
+  Widget build(BuildContext context) => GlassInput(
+    controller: controller,
+    label: label,
+    hint: hint,
+    prefixIcon: prefixIcon,
+    suffixIcon: suffixIcon,
+    onSuffixPressed: onSuffixPressed,
+    obscureText: true,
+    enabled: enabled,
+    readOnly: readOnly,
+    neon: neon,
+  );
 }
